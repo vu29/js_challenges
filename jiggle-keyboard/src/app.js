@@ -77,8 +77,12 @@ function toggleJiggle(keyValue) {
 }
 
 document.addEventListener('keypress', (event) => {
-
     let pressedKeyVal = event.key.toUpperCase();
+
+    if (pressedKeyVal === '\\') 
+        pressedKeyVal = 'BACKSLASH';
+    
+    console.log(pressedKeyVal);
     if (pressedKeyVal === currentJiggleKey) { // stop jiggling the pressedKey
         toggleJiggle(pressedKeyVal);
 
