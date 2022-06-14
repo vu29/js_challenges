@@ -90,6 +90,10 @@ h1 {
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
+button:focus{
+  outline: none;
+}
+
 ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
