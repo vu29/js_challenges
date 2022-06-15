@@ -7,7 +7,6 @@ function playAudioFile(filePath){
 (()=>{
     document.querySelectorAll('a').forEach((ele,index)=>{
         ele.addEventListener('click',()=>{
-            //playAudioFile(`../audio/key-${index+1}.mp3`);
             playAudioFile(`./audio/key-${index+1}.mp3`);
         })
     });
