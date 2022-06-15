@@ -1,4 +1,4 @@
-function playAudioFile(filePath){
+const playAudioFile = function(filePath){
     let audio = new Audio(filePath);
     audio.play();
 }
