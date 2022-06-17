@@ -1,4 +1,4 @@
-import {btnTransformToInCart, incrementItemCount, addItemToCart, updateAllPrices,updateItemCount, decrementItemCount, getMenuItemCount, removeItemFromCart, cartItemCount, showEmptyCartMsg, hideEmptyCartMsg, updateItemSubtotal} from "./utils.js"
+import {btnTransformToInCart, incrementItemCount, addItemToCart, updateAllPrices,updateItemCount, decrementItemCount, removeItemFromCart, showEmptyCartMsg, hideEmptyCartMsg, updateItemSubtotal, isItemInCart, isCartEmpty} from "./utils.js"
 
 const panel = document.querySelector('.panel');
 const cart = document.querySelector('.cart');
@@ -40,10 +40,10 @@ cart.addEventListener('click', (event)=>{
 
         updateItemSubtotal(itemId);
 
-        if(getMenuItemCount(itemId) === 0){
+        if(!isItemInCart(itemId)){
             removeItemFromCart(itemId);
             
-            if(cartItemCount === 0)
+            if(isCartEmpty())
                 showEmptyCartMsg();
         }
         else

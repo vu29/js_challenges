@@ -2,22 +2,12 @@ import {menuItems} from "./menu.js";
 
 const CHEVRON_IMAGE_PATH = './images/chevron.svg'
 
-export let cartItemCount = 0;
+let cartItemCount = 0;
 
-export const getItemById = (id) => { return menuItems.find((obj) => obj.id === Number(id))};
+const getItemById = (id) => { return menuItems.find((obj) => obj.id === Number(id))};
 
-export const getMenuItemCount = (id) => {
+const getMenuItemCount = (id) => {
     return getItemById(id).count;
-}
-
-export const incrementItemCount = (id) => {
-    cartItemCount++;
-    getItemById(id).count++;
-}
-
-export const decrementItemCount = (id) => {
-    cartItemCount--;
-    getItemById(id).count--;
 }
 
 const getItemSubTotal = (id) => {
@@ -25,7 +15,7 @@ const getItemSubTotal = (id) => {
     return (item.count * item.price).toFixed(2);
 }
 
-export const getSubTotal = () => {
+const getSubTotal = () => {
     let subTotal = 0;
     menuItems.forEach((item) => {
         subTotal += item.price * item.count;
@@ -33,12 +23,20 @@ export const getSubTotal = () => {
     return subTotal.toFixed(2);
 }
 
-export const getTaxAmount = (subTotal) => {
+const getTaxAmount = (subTotal) => {
     const TAX_MUL = 0.0975;
     return (subTotal * TAX_MUL).toFixed(2);
 }
 
-export const isInCart = (id) => getItemById(id).count > 0;
+const replaceTextInDiv = (div,text) => {
+    while (div.firstChild) {
+        div.removeChild(div.lastChild);
+    }
+    const textNode = document.createTextNode(text);
+    div.appendChild(textNode);
+}
+
+export const isItemInCart = (id) => getItemById(id).count > 0;
 
 export const btnTransformToInCart = (btn) => {
     const btnTextNode = document.createTextNode('In Cart');
@@ -123,14 +121,6 @@ export const addItemToCart = (id) => {
     cartSummaryUl.appendChild(liNode);
 }
 
-const replaceTextInDiv = (div,text) => {
-    while (div.firstChild) {
-        div.removeChild(div.lastChild);
-    }
-    const textNode = document.createTextNode(text);
-    div.appendChild(textNode);
-}
-
 export const updateAllPrices = () => {
     const subTotalDiv = document.getElementById('subtotal-display');
     const subTotal = getSubTotal();
@@ -164,13 +154,24 @@ export const updateItemSubtotal = (id) => {
     replaceTextInDiv(subtotalDiv,`$${getItemSubTotal(id)}`);
 }
 
-
 export const hideEmptyCartMsg = () => {
     document.querySelector('.empty').style.display = 'None';
 }
 
 export const showEmptyCartMsg = () => {
     document.querySelector('.empty').style.display = '';
+}
+
+export const isCartEmpty = () => cartItemCount === 0;
+
+export const incrementItemCount = (id) => {
+    cartItemCount++;
+    getItemById(id).count++;
+}
+
+export const decrementItemCount = (id) => {
+    cartItemCount--;
+    getItemById(id).count--;
 }
 
 
