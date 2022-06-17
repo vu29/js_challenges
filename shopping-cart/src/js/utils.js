@@ -20,6 +20,11 @@ export const decrementItemCount = (id) => {
     getItemById(id).count--;
 }
 
+const getItemSubTotal = (id) => {
+    const item = getItemById(id);
+    return (item.count * item.price).toFixed(2);
+}
+
 export const getSubTotal = () => {
     let subTotal = 0;
     menuItems.forEach((item) => {
@@ -151,6 +156,21 @@ export const updateItemCount = (id) => {
     quantityElements.forEach((ele)=>{
         ele.textContent = getMenuItemCount(id);
     });
+}
+
+export const updateItemSubtotal = (id) => {
+    const subtotalDiv = document.querySelector(".cart").querySelector(`[item-id = '${id}']`).querySelector('.subtotal');
+    console.log(subtotalDiv);
+    replaceTextInDiv(subtotalDiv,`$${getItemSubTotal(id)}`);
+}
+
+
+export const hideEmptyCartMsg = () => {
+    document.querySelector('.empty').style.display = 'None';
+}
+
+export const showEmptyCartMsg = () => {
+    document.querySelector('.empty').style.display = '';
 }
 
 

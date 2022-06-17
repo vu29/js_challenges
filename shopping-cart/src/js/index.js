@@ -1,4 +1,4 @@
-import {btnTransformToInCart, incrementItemCount, addItemToCart, updateAllPrices,updateItemCount, decrementItemCount, getMenuItemCount, removeItemFromCart, cartItemCount} from "./utils.js"
+import {btnTransformToInCart, incrementItemCount, addItemToCart, updateAllPrices,updateItemCount, decrementItemCount, getMenuItemCount, removeItemFromCart, cartItemCount, showEmptyCartMsg, hideEmptyCartMsg, updateItemSubtotal} from "./utils.js"
 
 const panel = document.querySelector('.panel');
 const cart = document.querySelector('.cart');
@@ -11,7 +11,7 @@ panel.addEventListener('click',(event)=>{
 
             const itemId = Number(clickedElement.getAttribute('item-id'));
             incrementItemCount(itemId);
-            document.querySelector('.empty').style.display = 'None';
+            hideEmptyCartMsg();
             updateAllPrices();
             addItemToCart(itemId);
         }
@@ -38,11 +38,13 @@ cart.addEventListener('click', (event)=>{
             decrementItemCount(itemId);
         }
 
-        if(getMenuItemCount(itemId) == 0){
+        updateItemSubtotal(itemId);
+
+        if(getMenuItemCount(itemId) === 0){
             removeItemFromCart(itemId);
             
             if(cartItemCount === 0)
-                document.querySelector('.empty').style.display = '';
+                showEmptyCartMsg();
         }
         else
             updateItemCount(itemId);
