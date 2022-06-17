@@ -2,26 +2,28 @@ import {menuItems} from "./menu.js";
 
 const CHEVRON_IMAGE_PATH = './images/chevron.svg'
 
-const getItemById = (id) => menuItems.find((obj) => obj.id === id);
+export let cartItemCount = 0;
+
+export const getItemById = (id) => { return menuItems.find((obj) => obj.id === Number(id))};
 
 export const getMenuItemCount = (id) => {
     return getItemById(id).count;
 }
 
 export const incrementItemCount = (id) => {
+    cartItemCount++;
     getItemById(id).count++;
-    updateAllPrices();
 }
 
 export const decrementItemCount = (id) => {
+    cartItemCount--;
     getItemById(id).count--;
-    updateAllPrices();
 }
 
 export const getSubTotal = () => {
     let subTotal = 0;
     menuItems.forEach((item) => {
-        subTotal += item.price * (item.count > 0);
+        subTotal += item.price * item.count;
     });
     return subTotal.toFixed(2);
 }
@@ -59,6 +61,7 @@ export const addItemToCart = (id) => {
     const item = getItemById(id);
 
     const liNode = document.createElement('li');
+    liNode.setAttribute('item-id',id);
         const plateDiv = document.createElement('div');
         plateDiv.classList.add('plate');
             const imgNode = document.createElement('img');
@@ -69,7 +72,6 @@ export const addItemToCart = (id) => {
                 const quantityText = document.createTextNode(`${item.count}`);
             quantityDiv.appendChild(quantityText);
         plateDiv.appendChild(imgNode);
-        console.log(quantityDiv);
         plateDiv.appendChild(quantityDiv);
 
         const contentDiv = document.createElement('div');
@@ -92,8 +94,6 @@ export const addItemToCart = (id) => {
                 const decreaseBtnImg = document.createElement('img');
                 decreaseBtnImg.src = CHEVRON_IMAGE_PATH
             decreaseBtn.appendChild(decreaseBtnImg);
-
-            // quantity div
 
             const increaseBtn = document.createElement('button');
             increaseBtn.classList.add('increase');
@@ -137,7 +137,20 @@ export const updateAllPrices = () => {
     replaceTextInDiv(taxDiv,`$${taxAmount}`);
     const totalDiv = document.getElementById('total-display');
     replaceTextInDiv(totalDiv,`$${total}`);
+}
 
+export const removeItemFromCart = (id) => {
+    document.querySelector(".cart").querySelector(`[item-id = '${id}']`).remove();
+    let btn = document.querySelector('.panel').querySelector(`[item-id='${id}']`)
+    btnTransformToAddToCart(btn);
+}
+
+export const updateItemCount = (id) => {
+    id = Number(id);
+    let quantityElements = document.querySelector(".cart").querySelector(`[item-id = '${id}']`).querySelectorAll('.quantity')
+    quantityElements.forEach((ele)=>{
+        ele.textContent = getMenuItemCount(id);
+    });
 }
 
 
