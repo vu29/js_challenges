@@ -1,15 +1,35 @@
+const SECONDS_IN_A_MINUTE = 60;
+const TIME_UP_MSG = 'Time is Up!!';
 
-export const padNumber = (num) => {
+let startBtn = document.getElementById('start-btn');
+let minInput = document.getElementById('minutes-input');
+let secondInput = document.getElementById('seconds-input');
+let ring = document.querySelector('.ring');
+
+const padNumber = (num) => {
     return (num < 10) ? '0' + num.toString() : num.toString();
 }
 
-export const getMinuteInput = () => document.querySelector('#minutes-input').value;
+const resetToDefault = () => {
+    minInput.value = padNumber(0);
+    secondInput.value = padNumber(10);
+    ring.classList.remove('ending');
+    endTime = undefined;
+    remainingTime = undefined;
+    stopTime = undefined;
+    timerOn = false;
+    startBtn.innerText = 'START';
+    console.log(startBtn.innerText);
+}
 
-export const getSecondInput = () => document.querySelector('#seconds-input').value;
+const showTimeUp = () => {
+    alert(TIME_UP_MSG);
+    resetToDefault();
+}
 
-export const convertToSeconds = (min,second) => Number(min) * 60 + Number(second);
+const convertToMilliSeconds = (min,second) => (Number(min) * 60 + Number(second)) * 1000;
 
-export const enableInputField = (inputField) => {
+const enableInputField = (inputField) => {
     if (Array.isArray(inputField)){
         inputField.forEach((field)=>{
             field.disabled = false;
@@ -20,7 +40,7 @@ export const enableInputField = (inputField) => {
     }
 }
 
-export const disableInputField = (inputField) => {
+const disableInputField = (inputField) => {
     if (Array.isArray(inputField)){
         inputField.forEach((field)=>{
             field.disabled = true;
@@ -37,14 +57,10 @@ export const padInputField = (inputField) => {
             field.value = padNumber(Number(field.value));
         })
     }
-    else{
+    else
         inputField.value = padNumber(Number(inputField.value));
-        //console.log(padNumber(Number(inputField.value)));
-    }
         
 };
-
-export const isInputFieldDisable = (inputField) => inputField.disabled;
 
 export const isInputTimeValid = (min,second) => {
     min = Number(min);
@@ -56,17 +72,69 @@ export const isInputTimeValid = (min,second) => {
     return min >= 0 && second >= 0 && second <60;
 }
 
-export const resetToDefault = (minInput,secondInput,startBtn,ring) => {
-    minInput.value = padNumber(0);
-    secondInput.value = padNumber(5);
-    ring.classList.remove('ending');
-    console.log(ring.classList);
-    remainingTime = 0;
-    timerOn = false;
-    console.log(startBtn);
-    startBtn.innerText = 'START';
+export const getMinuteInput = () => document.querySelector('#minutes-input').value;
 
+export const getSecondInput = () => document.querySelector('#seconds-input').value;
+
+export const getUpdatedEndTime = (endTime,stopTime) => {
+    return ((endTime === undefined) ? Date.now() + convertToMilliSeconds(getMinuteInput(),getSecondInput()) : endTime) 
+            + (stopTime === undefined ? 0 : Date.now() - stopTime);
 }
+
+export const startTimer = () => {
+    disableInputField([minInput,secondInput]);
+    startBtn.innerText = 'STOP';
+    let timerInterval = setInterval(() => {
+        remainingTime = endTime - Date.now(); 
+        console.log('si',remainingTime);
+
+
+        let remainingMin = padNumber(Math.floor(Math.ceil(remainingTime/1000)/SECONDS_IN_A_MINUTE));
+        let remainingSecond = padNumber((Math.ceil(remainingTime/1000))%60);
+
+        minInput.value = remainingMin;
+        secondInput.value = remainingSecond;
+
+        if(remainingTime <= 0){ 
+            setTimeout(() => {
+                showTimeUp();
+            }, 0);
+            clearInterval(timerInterval);
+            ring.classList.add('ending');
+        }
+
+    }, 100);
+
+    return timerInterval;
+    
+}
+
+export const stopTimer = (timerInterval) => {
+    stopTime = Date.now();
+    timerOn = false;
+    clearInterval(timerInterval);
+    startBtn.innerText = 'START';
+}
+
+export const endTimer = (timerInterval) => {
+    setTimeout(() => {
+        showTimeUp();
+    }, 0);
+    clearInterval(timerInterval);
+    ring.classList.add('ending');
+    resetToDefault();
+}
+
+export const allowSetTime = () => {
+    enableInputField([minInput,secondInput]);
+    endTime = undefined;
+    stopTime = undefined;
+}
+
+
+
+
+
 
 
 
