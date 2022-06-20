@@ -1,27 +1,25 @@
-import {toggleJiggle, isKeyJiggling, getRandomKey} from './utils.js'
-
+import { toggleJiggle, isKeyJiggling, getRandomKey } from './utils.js';
 
 document.addEventListener('keypress', (event) => {
-    let pressedKeyVal = event.key.toUpperCase();
+  let pressedKeyVal = event.key.toUpperCase();
 
-    if (pressedKeyVal === '\\') 
-        pressedKeyVal = 'BACKSLASH';
-    
+  if (pressedKeyVal === '\\') pressedKeyVal = 'BACKSLASH';
 
-    console.log(pressedKeyVal);
-    if (isKeyJiggling(pressedKeyVal)) { // stop jiggling the pressedKey
-        toggleJiggle(pressedKeyVal);
+  console.log(pressedKeyVal);
+  if (isKeyJiggling(pressedKeyVal)) {
+    // stop jiggling the pressedKey
+    toggleJiggle(pressedKeyVal);
 
-        let randomKey = getRandomKey();
+    let randomKey = getRandomKey();
 
-        currentJiggleKey = randomKey.keyVal
-        toggleJiggle(randomKey.keyVal);
-    }
+    currentJiggleKey = randomKey.keyVal;
+    toggleJiggle(randomKey.keyVal);
+  }
 });
 
 window.addEventListener('load', () => {
-    let randomKey = getRandomKey();
+  let randomKey = getRandomKey();
 
-    currentJiggleKey = randomKey.keyVal
-    toggleJiggle(randomKey.keyVal);
-})
+  currentJiggleKey = randomKey.keyVal;
+  toggleJiggle(randomKey.keyVal);
+});
