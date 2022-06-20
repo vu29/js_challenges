@@ -1,14 +1,16 @@
-const playAudioFile = function(filePath){
-    let audio = new Audio(filePath);
+const AUDIO_FILE_PATH = './audio'
+
+const playAudioFile = function(id){    
+    let audio = new Audio(AUDIO_FILE_PATH+`/key-${id}.mp3`);
     audio.play();
 }
 
-// Mapping keys to their respective audio files
-(()=>{
-    document.querySelectorAll('a').forEach((ele,index)=>{
-        ele.addEventListener('click',()=>{
-            playAudioFile(`./audio/key-${index+1}.mp3`);
-        })
-    });
-})();
+const pianoDiv = document.querySelector('.piano');
+pianoDiv.addEventListener('click',(event)=>{
+    if(event.target.tagName === 'path'){
+        const keyId = event.target.parentElement.id;
+        playAudioFile(keyId);
+    }
+});
+
 
