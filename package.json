@@ -26,10 +26,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx pretty-quick --staged &&  lint-staged"
+      "pre-commit": "npx pretty-quick --staged &&  npx lint-staged"
     }
   },
   "lint-staged": {
-    "*.js": "eslint --fix"
+    "*.js": "eslint . --fix"
   }
 }
