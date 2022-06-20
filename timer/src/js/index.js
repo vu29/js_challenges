@@ -28,9 +28,11 @@ window.endTime = undefined;
 
 configBtn.onclick = () => {
     if (!timerOn) 
-        allowSetTime();    
-} 
+        allowSetTime();
+    
 
+
+};
 startBtn.onclick = () => {
     if (!timerOn) {
 
@@ -50,7 +52,11 @@ startBtn.onclick = () => {
          else 
             timerInterval = startTimer(minInput, secondInput, startBtn, ring);
         
+
+
     } else 
         stopTimer(timerInterval);
     
-}
+
+
+};
