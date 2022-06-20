@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
 
-body {
+.wrapper {
   background: #F3F3F3;
   color: #4E4E4E;
-  min-width: 100vw;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -88,5 +87,38 @@ button {
 
 button:hover {
   background: #543599;
+}
+
+
+ul.breadcrumb {
+  background: #F3F3F3;
+  margin: 0px;
+  padding: 5px 16px;
+  list-style: none;
+}
+
+
+ul.breadcrumb li {
+  display: inline;
+  font-size:20px;
+}
+
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
 }
 

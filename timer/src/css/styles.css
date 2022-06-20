@@ -6,14 +6,18 @@
       url('./fonts/bebasneue-book-webfont.woff2') format('woff2');
 }
 
-body {
+.breadcrumb-wrapper{
+  background: #2B2A30;
+  color: aliceblue;
+}
+
+.content {
   align-items: center;
   background: #2B2A30;
   display: flex;
   justify-content: center;
   margin: 0;
   min-height: 100vh;
-  min-width: 100vw;
   padding: 0;
 }
 
@@ -111,4 +115,36 @@ input[type=text]:disabled {
 
 .settings:hover {
   opacity: 1;
+}
+
+ul.breadcrumb {
+  margin: 0px;
+  padding: 5px 16px;
+  list-style: none;
+}
+
+
+ul.breadcrumb li {
+  display: inline;
+  font-size:20px;
+}
+
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  color: aliceblue;
+  content: "/\00a0";
+}
+
+
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
 }

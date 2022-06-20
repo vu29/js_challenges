@@ -11,32 +11,36 @@
 
 <body>
   <script defer src="./js/index.js" type="module"></script>
+  <div class="breadcrumb-wrapper">
+    <ul class="breadcrumb">
+      <li><a href="../../index.html">Home</a></li>
+      <li>Pomodoro Timer</li>
+    </ul>
+  </div>
 
-  <!-- temp script -->
-
-  <script src="./js/utils.js"></script>
-
-  <div class="wrapper">
-    <div class="ring">
-      <svg width="518" height="518" viewBox="0 0 518 518">
-        <circle stroke-width="9px" x="0" y="y" cx="259" cy="259" r="254" />
-      </svg>
-    </div>
-
-    <div class="timer">
-      <div class="time">
-        <div class="minutes">
-          <input autocomplete="off" type="text" id="minutes-input" value="00" disabled />
-        </div>
-        <div class="colon">:</div>
-        <div class="seconds">
-          <input autocomplete="off" type="text" id="seconds-input" value="10" disabled />
-        </div>
+  <div class="content">
+    <div class="wrapper">
+      <div class="ring">
+        <svg width="518" height="518" viewBox="0 0 518 518">
+          <circle stroke-width="9px" x="0" y="y" cx="259" cy="259" r="254" />
+        </svg>
       </div>
-      <button id="start-btn" class="start">start</button>
-      <button class="settings" id="settings-btn">
-        <img src="images/gear.svg" alt="Settings" />
-      </button>
+
+      <div class="timer">
+        <div class="time">
+          <div class="minutes">
+            <input autocomplete="off" type="text" id="minutes-input" value="00" disabled />
+          </div>
+          <div class="colon">:</div>
+          <div class="seconds">
+            <input autocomplete="off" type="text" id="seconds-input" value="10" disabled />
+          </div>
+        </div>
+        <button id="start-btn" class="start">start</button>
+        <button class="settings" id="settings-btn">
+          <img src="images/gear.svg" alt="Settings" />
+        </button>
+      </div>
     </div>
   </div>
 
