@@ -56,7 +56,4 @@ startBtn.onclick = () => {
 
     } else 
         stopTimer(timerInterval);
-    
-
-
 };
