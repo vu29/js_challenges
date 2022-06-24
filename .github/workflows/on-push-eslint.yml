@@ -10,3 +10,4 @@ jobs:
           node-version: '14'
       - run: npm ci
       - run: npx eslint . --fix
+      - run: npx pretty-quick
