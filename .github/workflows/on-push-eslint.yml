@@ -1,11 +1,8 @@
 name: ci
 on: 
   pull_request:
-    types: [opened]
-    branches:
-      - github_actions_pr_test
-      - feature/*
-      - hotfix/*
+    types:
+      -opened
 
 
 jobs:
