@@ -1,6 +1,6 @@
 name: ci
 on: 
-  pull-request:
+  pull_request:
     branches:
       - github_actions_pr_test
       - feature/*
