@@ -1,13 +1,9 @@
 name: ci
 on: 
   pull_request:
-    # types: [opened,edited]
+    types: [opened,reopened]
     branches:
       - develop
-      - github_actions_pr_test
-      - feature/*
-      - hotfix/*
-      - github_actions
 
 jobs:
   test-ci:
