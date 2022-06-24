@@ -1,11 +1,11 @@
 export const episodeList = [
 	{
 		id: 1,
-		name: "James Q Quick's Origin Story"
+		name: 'James Q Quick\'s Origin Story'
 	},
 	{
 		id: 2,
-		name: "Amy Dutton's Origin Story"
+		name: 'Amy Dutton\'s Origin Story'
 	},
 	{
 		id: 3,

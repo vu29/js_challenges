@@ -77,7 +77,7 @@ export const getUpdatedEndTime = (endTime, stopTime) => {
 	return (
 		(endTime === undefined
 			? Date.now() +
-			  convertToMilliSeconds(getMinuteInput(), getSecondInput())
+			convertToMilliSeconds(getMinuteInput(), getSecondInput())
 			: endTime) + (stopTime === undefined ? 0 : Date.now() - stopTime)
 	);
 };

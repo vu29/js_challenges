@@ -26,7 +26,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx pretty-quick --staged &&  npx lint-staged"
+      "pre-commit": "npx lint-staged"
     }
   },
   "lint-staged": {
