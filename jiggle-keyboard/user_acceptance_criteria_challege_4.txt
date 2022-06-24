@@ -1,4 +1,0 @@
-1) On the screen, the user will see a keyboard.
-2) On hovering over any key, the indiviual key will get highlighted and turn yellow and the text on the key will turn black.
-3) At the start a random key will jiggle and turn green.
-4) On pressing the jiggling key on the keyboard, the key will stop jiggling and another randomly selected key will start to jiggle.
