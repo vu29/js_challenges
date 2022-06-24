@@ -1,8 +1,9 @@
 name: ci
 on: 
   pull_request:
-    types: [opened,edited]
+    # types: [opened,edited]
     branches:
+      - develop
       - github_actions_pr_test
       - feature/*
       - hotfix/*
