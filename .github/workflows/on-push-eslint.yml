@@ -1,5 +1,11 @@
 name: ci
-on: [push]
+on: 
+  pull-request:
+    branches:
+      - github_actions_pr_test
+      - feature/*
+      - hotfix/*
+
 jobs:
   test-ci:
     runs-on: ubuntu-latest
@@ -10,4 +16,4 @@ jobs:
           node-version: '14'
       - run: npm ci
       - run: npx eslint . --fix
-      - run: npx pretty-quick
+      - run: npx pretty-quick .
